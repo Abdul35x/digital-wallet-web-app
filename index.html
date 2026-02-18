@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Wallet</title>
+    <link rel="stylesheet" href="style/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+    <h1>$<span id="account-balance">0.00</span></h1>
+        <input id="amount-input" type="number" placeholder="Enter Amount"/>
+        <div class="buttons">
+            <input id="deposit" type="button" value="Add Funds" />
+            <input id="withdrawal" type="button" value="Withdraw Funds" />
+        </div>
+        <div>
+            <h2>Wallet History</h2>
+        </div>
+        <ul id="transaction-history"></ul>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>

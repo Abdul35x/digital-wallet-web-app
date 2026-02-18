@@ -1,0 +1,2 @@
+# Local-Storage Implementation
+The browsers localStorage API was used to ensure that user data survives page refreshing. Since localStorage only accepts only accept strings, the transaction array couldn't be saved directly so a function saveWalletData() that serializes the data first was used
