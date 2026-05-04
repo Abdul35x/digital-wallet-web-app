@@ -7,18 +7,10 @@
     <link rel="stylesheet" href="style/styles.css" />
   </head>
   <body>
-    <div class="container">
-    <h1>$<span id="account-balance">0.00</span></h1>
-        <input id="amount-input" type="number" placeholder="Enter Amount"/>
-        <div class="buttons">
-            <input id="deposit" type="button" value="Add Funds" />
-            <input id="withdrawal" type="button" value="Withdraw Funds" />
-        </div>
-        <div>
-            <h2>Wallet History</h2>
-        </div>
-        <ul id="transaction-history"></ul>
-    </div>
-    <script src="js/script.js"></script>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" src="js/script.js"></script>
   </body>
 </html>

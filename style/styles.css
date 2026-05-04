@@ -37,7 +37,7 @@ ul{
   list-style: none;  
 }
 
-input, li, h2{
+button, li, h2{
     margin: .5rem;
 }
 
@@ -50,20 +50,20 @@ h1{
     border-radius: 50px;
 }
 
-input[type="button"]{
+button{
     padding: .8rem;
     color: inherit;
     background-color: var(--buttons);
 }
 
-#amount-input,
-#amount-input:focus{
+input,
+input:focus{
     width: 20rem;
     padding: 1rem .5rem;
     outline: 0;
 }
 
-#amount-input, input[type="button"]{
+input, button{
     border-radius: 5px;
     border-style: none;
 }

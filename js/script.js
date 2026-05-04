@@ -1,4 +1,94 @@
-const balanceDisplay = document.getElementById("account-balance");
+const { useState, useEffect } = React;
+
+function Wallet() {
+    const [balance, setBalance] = useState(0);
+    const [amount, setAmount] = useState("");
+    const [transactions, setTransactions] = useState([]);
+
+    function handleDeposit() {
+        const num = Number(amount);
+        if (num === 0) 
+            return alert("Enter amount");
+        setBalance(balance + num);
+        setTransactions([...transactions, 
+            {
+                id: Date.now(), 
+                type: "Inflow", 
+                amount: num, 
+                date: new Date().toLocaleString(), 
+            }]);
+        setAmount("");
+    }
+
+    function handleWithdrawal() {
+        const num = Number(amount);
+        if (num === 0) 
+            return alert("Enter amount");
+        if (num > balance)
+            return alert("Insufficient Funds");
+        setBalance(balance - num);
+        setTransactions([...transactions, 
+            {
+                id: Date.now(), 
+                type: "Outflow", 
+                amount: num, 
+                date: new Date().toLocaleString(), 
+            }]);
+        setAmount("");
+    }
+
+    useEffect(() => {
+        const savedBalance = localStorage.getItem("myWalletBalance");
+        const savedHistory = localStorage.getItem("myWalletHistory");
+
+        if (savedBalance !== null) {
+            setBalance(Number(savedBalance));
+        }
+
+        if (savedHistory !== null) {
+            setTransactions(JSON.parse(savedHistory));
+        }
+    }, 
+    []);
+
+    useEffect(() => {
+        localStorage.setItem("myWalletBalance", balance);
+        localStorage.setItem("myWalletHistory", JSON.stringify(transactions));
+    },
+    [balance, transactions]);
+
+    return (
+        <div className="container">
+            <h1>${balance.toFixed(2)}</h1>
+
+            <input
+                type="number"
+                placeholder="Enter Amount"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                />
+
+            <div class="buttons">
+                <button onClick={handleDeposit}>Add Funds</button>
+                <button onClick={handleWithdrawal}>Withdraw Funds</button>
+            </div>
+
+            <h2>Wallet History</h2>
+            <ul>
+                {transactions.slice().reverse().map((transaction) => (
+                    <li key={transaction.id} style={{ color: transaction.type === "Inflow" ? "green" : "red" }}>
+                        {transaction.type}: ${transaction.amount}, {transaction.date}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
+ReactDOM.render(<Wallet />, document.getElementById("root"));
+
+
+/*const balanceDisplay = document.getElementById("account-balance");
 const amountInput = document.getElementById("amount-input");
 const depositBtn = document.getElementById("deposit");
 const withdrawalBtn = document.getElementById("withdrawal");
@@ -86,4 +176,4 @@ function loadWalletData(){
     }
 }
 
-loadWalletData();
+loadWalletData();*/
